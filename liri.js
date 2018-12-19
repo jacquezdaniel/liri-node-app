@@ -11,6 +11,7 @@ let input = "";
 for (let i = 3; i < process.argv.length; i++) {
     input = input + " " + process.argv[i];
 };
+
 function spotifyThis(){
     spotify.search({ type: 'track', query: input, limit: 3 }, function (err, data) {
         if (err) {
@@ -50,6 +51,7 @@ function movieThis() {
         }
     });
 };
+
 function doWhat() {
 
     fs.readFile('random.txt', 'utf8', function (error, data) {
