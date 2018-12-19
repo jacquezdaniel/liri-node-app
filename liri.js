@@ -16,21 +16,19 @@ function spotifyThis(){
         if (err) {
             return console.log('Error occurred: ' + err);
         }
-        // console.log(JSON.stringify(data, null, 2));
         var song = (data.tracks.items[0] || "No information available");
         var artists = song.artists;
         if (artists){
             artists.forEach(function (element) {
                 console.log("Artist: " + element.name);
-            }); //artist(s) name
+            }); 
         };
-        console.log("Track Name: " + song.name || "No song information available"); //song name
-        console.log("Preview Link: " + song.external_urls.spotify || "No preview link available");//preview link
-        console.log("Album: " + song.album.name || "No album information available");//album song is from
+        console.log("Track Name: " + song.name || "No song information available"); 
+        console.log("Preview Link: " + song.external_urls.spotify || "No preview link available");
+        console.log("Album: " + song.album.name || "No album information available");
     });
 };
 
-//outputs movie information to your terminal/bash window
 function movieThis() {
     request("http://www.omdbapi.com/?t=" + input + "&y=&plot=short&apikey=trilogy", function (error, response, body) {
         if (!error && response.statusCode === 200) {
