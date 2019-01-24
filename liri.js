@@ -108,13 +108,13 @@ var pick = function(caseData, functionData) {
       getMyBands(functionData);
       break;
     case "spotify-this-song":
-      getMeSpotify(functionData);
+      spotifyThis(functionData);
       break;
     case "movie-this":
-      getMeMovie(functionData);
+      movieThis(functionData);
       break;
     case "do-what-it-says":
-      doWhatItSays();
+      doWhat();
       break;
     default:
       console.log("LIRI doesn't know that");
