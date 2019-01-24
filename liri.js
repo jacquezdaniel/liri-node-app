@@ -1,6 +1,8 @@
 require("dotenv").config();
 var request = require("request");
 var Spotify = require('node-spotify-api');
+var axios = require("axios");
+var moment = require("moment");
 const keys = require("./keys.js");
 const fs = require('fs');
 
@@ -99,25 +101,31 @@ var getMyBands = function(artist) {
     );
   };
 
-function runCommand(){
-switch (command) {
-
-    case "spotify-this-song":
-        spotifyThis();
-        break;
-
-    case "movie-this":
-        movieThis();
-        break;
-
-    case "do-what-it-says":
-        doWhat();
-        break;
-    
+// Function for determining which command is executed
+var pick = function(caseData, functionData) {
+    switch (caseData) {
     case "concert-this":
-        getMyBands();
-        break;
-    };
-};
-
-runCommand(); //executes intital command on run
+      getMyBands(functionData);
+      break;
+    case "spotify-this-song":
+      getMeSpotify(functionData);
+      break;
+    case "movie-this":
+      getMeMovie(functionData);
+      break;
+    case "do-what-it-says":
+      doWhatItSays();
+      break;
+    default:
+      console.log("LIRI doesn't know that");
+    }
+  };
+  
+  // Function which takes in command line arguments and executes correct function accordingly
+  var runThis = function(argOne, argTwo) {
+    pick(argOne, argTwo);
+  };
+  
+  // MAIN PROCESS
+  // =====================================
+  runThis(process.argv[2], process.argv.slice(3).join(" "));
