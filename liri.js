@@ -3,16 +3,10 @@ var request = require("request");
 var Spotify = require('node-spotify-api');
 var axios = require("axios");
 var moment = require("moment");
-const keys = require("./keys.js");
-const fs = require('fs');
+var keys = require("./keys.js");
+var fs = require('fs');
 
 var spotify = new Spotify(keys.spotify);
-
-var command = process.argv[2];
-let input = "";
-for (let i = 3; i < process.argv.length; i++) {
-    input = input + " " + process.argv[i];
-};
 
 function spotifyThis(){
     spotify.search({ type: 'track', query: input, limit: 3 }, function (err, data) {
