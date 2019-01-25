@@ -8,8 +8,10 @@ var fs = require('fs');
 
 var spotify = new Spotify(keys.spotify);
 
-function spotifyThis(){
-    spotify.search({ type: 'track', query: input, limit: 3 }, function (err, data) {
+function spotifyThis(input){
+    spotify.search({ type: 'track', 
+                    query: input, 
+                    limit: 3 }, function (err, data) {
         if (err) {
             return console.log('Error occurred: ' + err);
         }
@@ -26,7 +28,7 @@ function spotifyThis(){
     });
 };
 
-function movieThis() {
+function movieThis(input) {
     request("http://www.omdbapi.com/?t=" + input + "&y=&plot=short&apikey=trilogy", function (error, response, body) {
         if (!error && response.statusCode === 200) {
             var movie = JSON.parse(body);
